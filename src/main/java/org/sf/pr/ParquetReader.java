@@ -58,7 +58,7 @@ public class ParquetReader extends Application {
         inputGridPane.setVgap(6);
 
 // set scrollbars for cols
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        table.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
         inputGridPane.getChildren().addAll(openMultipleButton, table);
 
         final Pane rootGroup = new VBox(12);
@@ -66,8 +66,6 @@ public class ParquetReader extends Application {
         rootGroup.setPadding(new Insets(12, 12, 12, 12));
 
         Scene scene = new Scene(rootGroup);
-        scene.getStylesheets().add("stylesheet.css");
-
         stage.setScene(scene);
 
         stage.show();
