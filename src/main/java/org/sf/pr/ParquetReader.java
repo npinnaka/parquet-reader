@@ -45,7 +45,7 @@ public class ParquetReader extends Application {
                         List<File> list =
                                 fileChooser.showOpenMultipleDialog(stage);
                         List<String> names = list.stream().map(file -> file.getAbsolutePath()).collect(toList());
-                        openFile(names, stage);
+                        openFile(names);
 
                     }
                 });
@@ -88,9 +88,9 @@ public class ParquetReader extends Application {
         );
     }
 
-    private void openFile(List<String> files, Stage stage) {
+    private void openFile(List<String> files) {
         try {
-            processParquet(files, stage);
+            processParquet(files);
         } catch (Exception ex) {
             Logger.getLogger(ParquetReader.class.getName()).log(
                     Level.SEVERE, null, ex
@@ -99,7 +99,7 @@ public class ParquetReader extends Application {
     }
 
 
-    private void processParquet(List<String> files, Stage stage) {
+    private void processParquet(List<String> files) {
         List<Map<String, Object>> sparkData = Utils.showDFData(Utils.readParquet(files));
         Map<String, Object> fetchKeysMap = sparkData.get(0);
         List<TableColumn> headers = new ArrayList<TableColumn>();
