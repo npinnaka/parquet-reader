@@ -104,19 +104,18 @@ public class ParquetReader extends Application {
         Map<String, Object> fetchKeysMap = sparkData.get(0);
         List<TableColumn> headers = new ArrayList<TableColumn>();
         for (String key : fetchKeysMap.keySet()) {
-            TableColumn tc = new TableColumn(key);
-            tc.setCellValueFactory(new MapValueFactory(key));
-            headers.add(tc);
+            TableColumn tableColumn = new TableColumn(key);
+            tableColumn.setCellValueFactory(new MapValueFactory(key));
+            headers.add(tableColumn);
         }
         table.getColumns().addAll(headers);
         table.setItems(getMapData(sparkData));
     }
 
     private ObservableList<Map> getMapData(List<Map<String, Object>> sparkData) {
-        ObservableList<Map> allData = FXCollections.observableArrayList();
-        allData.addAll(sparkData);
-        return allData;
-
+        ObservableList<Map> mapData = FXCollections.observableArrayList();
+        mapData.addAll(sparkData);
+        return mapData;
     }
 
     public static void main(String[] args) {
