@@ -35,7 +35,7 @@ public class ParquetReader extends Application {
         stage.setTitle("File Chooser Sample");
 
         final FileChooser fileChooser = new FileChooser();
-        final javafx.scene.control.Button openMultipleButton = new Button("Load Parquet...");
+        final Button openMultipleButton = new Button("Load Parquet...");
 
         openMultipleButton.setOnAction(
                 new EventHandler<ActionEvent>() {
