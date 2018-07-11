@@ -38,9 +38,18 @@ public class Utils {
         return df;
     }
 
+    public static DataFrame readJSON(String file) {
+        SQLContext sqlContext = buildSQLContext();
+        DataFrame df = sqlContext.read().json(file);
+
+        df.show();
+
+        return df;
+    }
+
     public static List<Map<String, Object>> showDFData(DataFrame df) {
         Map<String, Object> returnMap = null;
-        List<Map<String,Object>> returnlist= new ArrayList<>();
+        List<Map<String,Object>> returnList= new ArrayList<>();
         String [] cols = df.columns();
         for (Row row : df.toJavaRDD().cache().collect())
         {
@@ -49,8 +58,8 @@ public class Utils {
             {
                 returnMap.put(cols[i],row.get(i));
             }
-            returnlist.add(returnMap);
+            returnList.add(returnMap);
         }
-        return returnlist;
+        return returnList;
     }
 }

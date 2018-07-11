@@ -23,17 +23,23 @@
             <artifactId>spark-sql_2.10</artifactId>
             <version>1.6.3</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>25.1-jre</version>
-        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>org.sf.pr.ParquetReader</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -48,9 +54,10 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>org.sf.pr.ParquetReader</mainClass>
+                    <mainClass>org.sf.pr.ParquetReaderUI</mainClass>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 </project>
