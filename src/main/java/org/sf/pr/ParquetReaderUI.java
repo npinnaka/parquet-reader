@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -12,9 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -51,22 +50,26 @@ public class ParquetReaderUI extends Application {
         stage.show();
     }
 
+
     private Node createCenterPane(Stage stage, int num) {
+        GridPane gridPane = new GridPane();
         if (num == 0) {
             Label label = new Label("welcome to parquet utils");
-            label.setAlignment(Pos.CENTER);
-            HBox box =  new HBox(label);
-            box.setAlignment(Pos.CENTER);
-            return box;
+            gridPane.setHalignment(label, HPos.CENTER);
+            gridPane.getChildren().add(label);
         } else if (num == 1) {
             table = null;
             table = new TableView();
-            return new HBox(table);
+            gridPane.setHgrow(table, Priority.ALWAYS);
+            gridPane.setVgrow(table, Priority.ALWAYS);
+            gridPane.getChildren().add(table);
         } else if (num == 2) {
             textArea = new TextArea();
-            return new HBox(table);
+            gridPane.setHgrow(textArea, Priority.ALWAYS);
+            gridPane.setVgrow(textArea, Priority.ALWAYS);
+            gridPane.getChildren().add(textArea);
         }
-        return null;
+        return gridPane;
     }
 
     private FlowPane getTopPane(Stage stage) {
